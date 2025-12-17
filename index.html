@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catholic Play Store - Member Area</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
+    <!-- Babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
+    <!-- Configuração Tailwind e Estilos Personalizados -->
     <script>
         tailwind.config = {
             theme: {
@@ -55,6 +60,18 @@
             background: radial-gradient(circle, transparent 50%, #141414 150%);
         }
         
+        /* Animação do Modal */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+        .animate-slideUp { animation: slideUp 0.4s ease-out; }
+
         body {
             background-color: #141414;
             color: #fff;
@@ -86,6 +103,7 @@
         const BookOpen = (props) => <IconBase {...props}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></IconBase>;
         const User = (props) => <IconBase {...props}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></IconBase>;
         const X = (props) => <IconBase {...props}><path d="M18 6 6 18"/><path d="m6 6 18 18"/></IconBase>;
+        const Sun = (props) => <IconBase {...props}><circle cx="12" cy="12" r="5"/><path d="M12 1v2"/><path d="M12 21v2"/><path d="M4.22 4.22l1.42 1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M1 12h2"/><path d="M21 12h2"/><path d="M4.22 19.78l1.42-1.42"/><path d="M18.36 5.64l1.42-1.42"/></IconBase>;
 
         // =================================================================================
         // Dados
@@ -99,7 +117,7 @@
                 description: "Reza el Rosario con poder, meditaciones centradas en el combate espiritual.",
                 icon: Shield,
                 color: "bg-blue-900",
-                link: "https://appsantorosarioes.netlify.app/",
+                link: "https://santorosarioes.netlify.app/",
                 match: "98% Match",
                 badge: "Top 10",
                 image: "https://i.postimg.cc/G2tN6VCf/Gemini-Generated-Image-txrat1txrat1txra.png" 
@@ -126,6 +144,216 @@
                 link: "https://devocionaldelosantos.netlify.app/",
                 match: "92% Match",
                 image: "https://i.postimg.cc/15LQwpFK/Gemini-Generated-Image-gcg4jfgcg4jfgcg4.png" 
+            }
+        ];
+
+        // DADOS DE ORAÇÕES
+        const PRAYERS_DATA = [
+            {
+                id: 'daily-prayers',
+                title: "Oraciones de la Mañana",
+                subtitle: "Rutina Espiritual",
+                image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=2070&auto=format&fit=crop", 
+                match: "Diario",
+                isModal: true, 
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">☀️</span> Al despertar</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Al despertar, dirige tus pensamientos inmediatamente a Dios y, haciendo la Señal de la Cruz, di:<br/>
+                                <em class="text-white block mt-1 border-l-2 border-yellow-600 pl-3">"En el nombre del Padre, y del Hijo, y del Espíritu Santo. Amén."</em>
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">⬆️</span> Al levantarse</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Al levantarte de la cama, di:<br/>
+                                <em class="text-white block mt-1 border-l-2 border-yellow-600 pl-3">"En el nombre de Jesucristo crucificado me levanto. Que Él me bendiga, me gobierne, me preserve y me conduzca a la vida eterna. Amén."</em>
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">🙏</span> Al arrodillarse</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Al arrodillarte, procura ponerte en la presencia de Dios, concienciándote de que Él está delante de ti, que conoce todos tus pensamientos y que desea escucharte y socorrerte. Entonces di:<br/>
+                                <em class="text-white block mt-1 border-l-2 border-yellow-600 pl-3">"Libra mi mente, oh Dios mío, de todos los pensamientos que distraen, y permíteme orar siempre con atención y devoción, para que así merezca ser escuchado por Ti. Te ofrezco mis oraciones en unión con aquella intención divina con la cual Tú mismo, mientras estuviste en la Tierra, rendías alabanzas a Dios."</em>
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'adoration-acts',
+                title: "Actos de Adoración",
+                subtitle: "Acción de Gracias",
+                image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop", 
+                match: "Diario",
+                isModal: true,
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">🙌</span> Actos de Adoración y Acción de Gracias</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                <em class="text-white block mt-1 border-l-2 border-yellow-600 pl-3">
+                                    "Bendita sea la santa y una Trinidad, ahora y siempre. Amén.<br/><br/>
+                                    Al Rey de los siglos, al inmortal, invisible y único Dios, sean dados honor y gloria por los siglos de los siglos.<br/><br/>
+                                    Te doy gracias, oh Padre mío, por los innumerables beneficios que he recibido de tu amorosa generosidad y misericordia, sobre todo por haberme preservado esta noche.<br/><br/>
+                                    Gloria al Padre que me creó, gloria al Hijo que me redimió, gloria al Espíritu Santo que me santificó."
+                                </em>
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'daily-offering',
+                title: "Ofrecimiento del Día",
+                subtitle: "Al Sagrado Corazón",
+                image: "https://i.postimg.cc/QCXj54t8/Gemini-Generated-Image-4bn33n4bn33n4bn3.png", 
+                match: "Diario",
+                isModal: true,
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">❤️</span> Ofrecimiento del Día</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                <em class="text-white block mt-1 border-l-2 border-yellow-600 pl-3">
+                                    "Oh Jesús, por el Inmaculado Corazón de María, te ofrezco mis oraciones, obras y sufrimientos de este día por todas las intenciones de tu Sagrado Corazón, en unión con el Santo Sacrificio de la Misa ofrecido en todo el mundo, en reparación por mis pecados, por las intenciones de todos nuestros asociados y en particular por el apostolado de la oración."
+                                </em>
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">🏛️</span> Versión en Latín</h3>
+                            <p class="text-gray-400 italic text-sm leading-relaxed border-l-2 border-gray-700 pl-3">
+                                "Offero tibi, Domine Deus meus, in unióne Sacratíssimi Cordis Iesu, per Immaculatae Cordis Mariae, oratiónes, opéribus, dolores et gaudia huius diéí, in satisfactionem pro peccátis nostris et omnes intentiones quod per eádem Divinum Cor intercedendo et iugiter semetípsum sacrificans est in nostris altáris. Praesertim óffero intentiones Summus Pontifex et augméntine et perseverántiam vocationibus sacerdotálibus, religiósis et missionálibus."
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'meal-prayer',
+                title: "Oración para las Comidas",
+                subtitle: "Bendición de Alimentos",
+                image: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?q=80&w=2070&auto=format&fit=crop", 
+                match: "Refección",
+                isModal: true,
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">🍞</span> Antes de las Comidas</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                <em class="text-white block mt-1 border-l-2 border-yellow-600 pl-3">
+                                    "Bendice, Señor, los alimentos que vamos a tomar para mejor servirte y amarte.<br/>
+                                    + En el nombre del Padre, del Hijo y del Espíritu Santo. Amén."
+                                </em>
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'work-prayer',
+                title: "Oración para el Trabajo",
+                subtitle: "Estudio y Labor",
+                image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop", 
+                match: "Diario",
+                isModal: true,
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">💼</span> Antes del Trabajo</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                <em class="text-white block mt-1 border-l-2 border-yellow-600 pl-3">
+                                    "Bendice, Padre celestial, el trabajo (o estudio) que voy a iniciar; que tu Espíritu Santo me ilumine, inspire y oriente, y tu gracia me ayude a realizarlo todo con espíritu de amor y servicio, para honor y gloria de tu nombre y el bien de mis hermanos. María, Madre de Jesús y Madre mía, intercede por mí. Amén."
+                                </em>
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'bible-prayer',
+                title: "Antes de leer la Biblia",
+                subtitle: "Lectura Espiritual",
+                image: "https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=1974&auto=format&fit=crop", 
+                match: "Estudio",
+                isModal: true,
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">📖</span> Oración para antes de leer la Biblia</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                <em class="text-white block mt-1 border-l-2 border-yellow-600 pl-3">
+                                    "Señor mío y Dios mío, creo firmemente que estás aquí, que me ves, que me oyes; te adoro con profunda reverencia. Te pido perdón de mis pecados y la gracia para hacer con fruto este tiempo de oración. Madre mía Inmaculada, San José, mi protector, Ángel de mi guarda, interceded por mí. Amén."
+                                </em>
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'thanksgiving-prayer',
+                title: "Oración de Agradecimiento",
+                subtitle: "Gratitud a Dios",
+                image: "https://images.unsplash.com/photo-1507692814201-9994511ba977?q=80&w=2070&auto=format&fit=crop", 
+                match: "Gracias",
+                isModal: true,
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">🙏</span> Acción de Gracias</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                <em class="text-white block mt-1 border-l-2 border-yellow-600 pl-3">
+                                    "Oh Jesús, oh Dios eterno, te agradezco por los innumerables beneficios y por tus gracias. Que cada latido de mi corazón sea un himno de agradecimiento a Ti, oh Dios. Que las gotas de mi sangre circulen por Ti, oh Señor. Mi alma es un canto de adoración a tu misericordia. Te amo, oh Dios, por siempre, por toda la vida. Amén."
+                                </em>
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'forgiveness-prayer',
+                title: "Oración de Perdón",
+                subtitle: "Misericordia",
+                image: "https://images.unsplash.com/photo-1544169601-382991823eb3?q=80&w=2072&auto=format&fit=crop", 
+                match: "Perdón",
+                isModal: true,
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">🕊️</span> Petición de Perdón</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                <em class="text-white block mt-1 border-l-2 border-yellow-600 pl-3">
+                                    "En el nombre del Padre, del Hijo y del Espíritu Santo.<br/><br/>
+                                    Dios, Padre de amor y bondad, que en tu infinita misericordia acoges a todos los que se acercan a Ti con el corazón arrepentido, acoge mi petición de perdón por tantas faltas cometidas contra Ti y mis hermanos.<br/><br/>
+                                    Señor Jesucristo, Maestro de la ternura y del amor, que devolviste la vida en plenitud a tantos hombres y mujeres inmersos en el pecado y caminantes de las tinieblas, condúceme por los caminos del perdón y fortalece mi alma para que tenga la humildad de pedir perdón y la misericordia de saber perdonar.<br/><br/>
+                                    Espíritu Santo, Consolador del alma, Abogado de los justos y Paráclito del amor, inspira en mi corazón gestos de bondad y ternura, que devuelvan a los corazones angustiados la belleza del perdón y las gracias de la reconciliación. Amén."
+                                </em>
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'night-prayer',
+                title: "Oración de la Noche",
+                subtitle: "Descanso en Dios",
+                image: "https://images.unsplash.com/photo-1507502707541-f369a3b18502?q=80&w=1976&auto=format&fit=crop", 
+                match: "Noche",
+                isModal: true,
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-yellow-500 mb-2 flex items-center"><span class="mr-2">🌙</span> Antes de dormir</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                <em class="text-white block mt-1 border-l-2 border-yellow-600 pl-3">
+                                    "Dios mío y Padre mío, en tus manos encomiendo mi espíritu. Con Dios me acuesto, con Dios me levanto, con la gracia de Dios y del Divino Espíritu Santo. Amén."
+                                </em>
+                            </p>
+                        </div>
+                    </div>
+                `
             }
         ];
 
@@ -422,20 +650,28 @@
             );
         };
 
-        const Card = ({ item, isApp, customStyle, isHorizontal }) => {
+        const Card = ({ item, isApp, customStyle, isHorizontal, onOpenModal }) => {
             // Define largura e proporção com base se é horizontal (vídeo) ou vertical (poster)
             const widthClass = customStyle 
                 ? customStyle 
-                : (isHorizontal ? 'w-[220px] md:w-[300px] mx-1' : 'w-[140px] md:w-[200px] mx-1');
+                : (isHorizontal || item.isModal ? 'w-[220px] md:w-[300px] mx-1' : 'w-[140px] md:w-[200px] mx-1');
             
-            const aspectClass = isHorizontal ? 'aspect-video' : 'aspect-[2/3]';
+            const aspectClass = isHorizontal || item.isModal ? 'aspect-video' : 'aspect-[2/3]';
+
+            const handleClick = () => {
+                if (item.isModal && onOpenModal) {
+                    onOpenModal(item);
+                } else if (item.link !== '#') {
+                    window.open(item.link, '_blank');
+                }
+            };
 
             return (
                 <div 
                     className={`group relative flex-shrink-0 cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:z-50 ${widthClass}`}
-                    onClick={() => item.link !== '#' && window.open(item.link, '_blank')}
+                    onClick={handleClick}
                 >
-                    {/* Poster Image / Placeholder - Lógica ajustada para priorizar imagem */}
+                    {/* Poster Image / Placeholder */}
                     <div className={`${aspectClass} w-full rounded-md overflow-hidden relative shadow-lg ${!item.image && isApp ? item.color : 'bg-gray-800'}`}>
                         {!item.image && isApp ? (
                             <div className="w-full h-full flex flex-col items-center justify-center p-3 text-center border border-white/10 bg-gradient-to-br from-white/10 to-transparent">
@@ -450,11 +686,15 @@
                         {/* Gradient Overlay on Hover */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
                         
-                        {/* Ícone de Play no centro se for vídeo (horizontal) */}
-                        {isHorizontal && (
+                        {/* Ícone de Play (Vídeo) ou Info (Modal) */}
+                        {(isHorizontal || item.isModal) && (
                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div className="bg-red-600 rounded-full p-2 shadow-lg">
-                                    <Play className="w-6 h-6 text-white fill-current" />
+                                    {item.isModal ? (
+                                        <BookOpen className="w-6 h-6 text-white fill-current" />
+                                    ) : (
+                                        <Play className="w-6 h-6 text-white fill-current" />
+                                    )}
                                 </div>
                             </div>
                         )}
@@ -467,7 +707,7 @@
                         )}
                     </div>
 
-                    {/* Meta Info (Apears below on standard view) */}
+                    {/* Meta Info */}
                     <div className="mt-2 px-1 opacity-80 group-hover:opacity-100 transition-opacity">
                         <div className="flex items-center justify-between mb-1">
                             <span className="text-green-500 font-bold text-[10px] md:text-xs">{item.match}</span>
@@ -479,7 +719,7 @@
             );
         };
 
-        const Row = ({ title, subtitle, items, isAppRow, id, isHorizontal }) => {
+        const Row = ({ title, subtitle, items, isAppRow, id, isHorizontal, onOpenModal }) => {
             const rowRef = useRef(null);
 
             return (
@@ -509,6 +749,7 @@
                                     item={item} 
                                     isApp={isAppRow} 
                                     isHorizontal={isHorizontal}
+                                    onOpenModal={onOpenModal}
                                 />
                             ))}
                         </div>
@@ -534,7 +775,6 @@
                             method="POST"
                             className="space-y-6"
                         >
-                            {/* Configurações ocultas do FormSubmit */}
                             <input type="hidden" name="_subject" value="Nuevo Mensaje - Catholic Play Store" />
                             <input type="hidden" name="_template" value="table" />
                             <input type="hidden" name="_captcha" value="false" />
@@ -593,11 +833,56 @@
             </footer>
         );
 
+        // --- COMPONENTE MODAL NOVO ---
+        const ContentModal = ({ item, onClose }) => {
+            if (!item) return null;
+
+            return (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn" onClick={onClose}>
+                    <div 
+                        className="bg-[#181818] w-full max-w-2xl max-h-[90vh] rounded-lg shadow-2xl overflow-hidden relative animate-slideUp flex flex-col"
+                        onClick={e => e.stopPropagation()} // Evita fechar ao clicar dentro
+                    >
+                        {/* Botão Fechar */}
+                        <button 
+                            onClick={onClose}
+                            className="absolute top-3 right-3 z-20 bg-black/50 hover:bg-black/80 rounded-full p-2 text-white transition-colors"
+                        >
+                            <X className="w-5 h-5" />
+                        </button>
+
+                        {/* Imagem de Topo */}
+                        <div className="relative h-48 md:h-64 flex-shrink-0">
+                            <img 
+                                src={item.image} 
+                                alt={item.title} 
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#181818] to-transparent"></div>
+                            <div className="absolute bottom-4 left-6">
+                                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white drop-shadow-md">{item.title}</h2>
+                                <p className="text-gray-300 text-sm font-medium mt-1">{item.subtitle}</p>
+                            </div>
+                        </div>
+
+                        {/* Conteúdo com Scroll */}
+                        <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar">
+                            <div 
+                                className="prose prose-invert max-w-none"
+                                dangerouslySetInnerHTML={{ __html: item.content }} 
+                            />
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
         const App = () => {
             const [searchQuery, setSearchQuery] = useState('');
+            const [selectedItem, setSelectedItem] = useState(null); // Estado para o modal
             
             // Combine all data for searching
-            const allData = [...APPS_DATA, ...BOOKS_DATA, ...GUADALUPE_DATA, ...MUSIC_DATA];
+            const allData = [...APPS_DATA, ...PRAYERS_DATA, ...BOOKS_DATA, ...GUADALUPE_DATA, ...MUSIC_DATA];
             
             const filteredData = searchQuery 
                 ? allData.filter(item => 
@@ -610,6 +895,11 @@
                 <div className="min-h-screen bg-[#141414] overflow-x-hidden selection:bg-red-600 selection:text-white font-sans">
                     <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                     
+                    {/* Renderiza o Modal se houver item selecionado */}
+                    {selectedItem && (
+                        <ContentModal item={selectedItem} onClose={() => setSelectedItem(null)} />
+                    )}
+
                     {searchQuery ? (
                          <div className="pt-24 px-4 md:px-12 min-h-screen">
                             <h2 className="text-lg md:text-2xl text-gray-400 mb-6">Resultados para: <span className="text-white">"{searchQuery}"</span></h2>
@@ -618,7 +908,8 @@
                                     <Card 
                                         key={idx} 
                                         item={item} 
-                                        isApp={!!item.icon} // Check if it has an icon (Apps do)
+                                        isApp={!!item.icon && !item.isModal}
+                                        onOpenModal={setSelectedItem} // Passa função para abrir modal
                                         customStyle="w-full"
                                     />
                                 ))}
@@ -636,6 +927,15 @@
                             <div className="relative z-20 mt-4 md:-mt-32 pb-0 bg-[#141414] md:bg-gradient-to-b md:from-transparent md:via-[#141414] md:to-[#141414]">
                                 <Row id="apps" title="Mis Aplicaciones" items={APPS_DATA} isAppRow={true} />
                                 
+                                {/* Seção de Orações Diárias - Agora abre Modal */}
+                                <Row 
+                                    title="Oraciones Diarias" 
+                                    subtitle="Para fortalecer el espíritu" 
+                                    items={PRAYERS_DATA} 
+                                    isAppRow={false}
+                                    onOpenModal={setSelectedItem}
+                                />
+
                                 <Row 
                                     id="libros" 
                                     title="Biblioteca Católica" 
@@ -644,9 +944,9 @@
                                     isAppRow={false} 
                                 />
 
-                                {/* Nova Seção de Música - Agora com isHorizontal={true} */}
+                                {/* Nova Seção de Música */}
                                 <Row 
-                                    title="Playlist de música gregoriana especialmente seleccionada para Meditación y contemplación" 
+                                    title="Playlist de música gregoriana especialmente para Meditación y contemplación" 
                                     subtitle="Paz y Contemplación" 
                                     items={MUSIC_DATA} 
                                     isAppRow={false}
